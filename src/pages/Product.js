@@ -11,15 +11,16 @@ import {
   MenuItem,
   Box
 } from '@mui/material';
+import useCountries from '../utils/useCountries';
 
-const indianStates = ['Maharashtra', 'Karnataka', 'Delhi'];
-const citiesByState = {
-  Maharashtra: ['Mumbai', 'Pune', 'Nagpur'],
-  Karnataka: ['Bangalore', 'Mysore'],
-  Delhi: ['New Delhi', 'Dwarka']
-};
+// const indianStates = ['Maharashtra', 'Karnataka', 'Delhi'];
+// const citiesByState = {
+//   Maharashtra: ['Mumbai', 'Pune', 'Nagpur'],
+//   Karnataka: ['Bangalore', 'Mysore'],
+//   Delhi: ['New Delhi', 'Dwarka']
+// };
 
-const countries = ['India', 'USA'];
+
 
 
 const Product = () => {
@@ -36,6 +37,10 @@ const Product = () => {
 
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
+  const world = useCountries()
+  const countries = world.countries
+  const indianStates = world.indianStates
+  const citiesByState = world.citiesByState
 
   useEffect(() => {
     if (formData.country === 'India') {

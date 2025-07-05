@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -11,12 +11,14 @@ const Home = () => {
     {
       name:'Manish',
       Job:'SE',
-      Company:'Accenture'
+      Company:'Accenture',
+      id:0
     },
      {
       name:'Ashish',
       Job:'SE',
-      Company:'IBM'
+      Company:'IBM',
+      id:1,
     },
       {
       name:'Madhav',
@@ -26,10 +28,20 @@ const Home = () => {
      {
       name:'Venkatesh Kumar',
       Job:'Angular Developer',
-      Company:'IBM'
+      Company:'IBM',
+      id:2
     }
   ]
+useEffect(()=>{
+// const interval = setInterval(() => {
+//       setCount(prev => prev + 1);
+//     }, 1000); // every 1000ms = 1 second
+
+//     // Cleanup on unmount
+//     return () => clearInterval(interval);
+},[])
   const [count,setCount] = useState(0)
+  
   return (
     <div>
        <div>Welcome to Home Page</div>
@@ -48,6 +60,7 @@ const Home = () => {
             <TableRow
               key={row.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+             style={{ backgroundColor: row.id % 2 === 0 ? 'yellow' : 'white' }}
             >
               <TableCell component="th" scope="row">
                 {row.name}
@@ -61,7 +74,10 @@ const Home = () => {
       </Table>
     </TableContainer>
     <div>Current Count is : {count}</div>
-<button onClick={()=>setCount(count+1)}>Increment</button>
+{/* <button onClick={()=>setCount(count+1)}>Increment</button>
+<button onClick={()=>setCount(count-1)}>Decrement</button> */}
+
+<button onClick={()=>setInterval(()=>setCount(count+1),5000)}>Increment</button>
 <button onClick={()=>setCount(count-1)}>Decrement</button>
     {/* {
       user.map((u)=>(
